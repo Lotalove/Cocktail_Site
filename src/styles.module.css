@@ -1,0 +1,274 @@
+
+:root {
+  --bg-color: #0f172a;
+  --card-bg: #1e293b;
+  --accent: #fbbf24; /* Amber/Gold */
+  --text-main: #f8fafc;
+  --text-dim: #94a3b8;
+}
+
+body{
+  background-color:  #0f172a;
+}
+
+#search {
+  display: flex;
+  gap: 12px;
+  padding: 24px 20px;
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0.9) 100%);
+  border-bottom: 2px solid var(--accent);
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+#search input {
+  padding: 12px 16px;
+  background-color: rgba(15, 23, 42, 0.6);
+  border: 2px solid rgba(251, 191, 36, 0.3);
+  border-radius: 8px;
+  color: var(--text-main);
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  min-width: 250px;
+  font-family: inherit;
+}
+
+#search input::placeholder {
+  color: var(--text-dim);
+}
+
+#search input:focus {
+  outline: none;
+  border-color: var(--accent);
+  background-color: rgba(15, 23, 42, 0.9);
+  box-shadow: 0 0 12px rgba(251, 191, 36, 0.3);
+}
+
+#search input:hover {
+  border-color: rgba(251, 191, 36, 0.6);
+}
+
+#search button {
+  padding: 12px 28px;
+  background-color: var(--accent);
+  color: #0f172a;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+#search button:hover {
+  background-color: #f9d23a;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(251, 191, 36, 0.3);
+}
+
+#search button:active {
+  transform: translateY(0);
+}
+
+#addButton{
+ position: absolute;
+ top: 0;
+ right:0;   
+color: black;
+}
+
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  padding: 20px;
+  background-color: var(--bg-color);
+  min-height: 100vh;
+}
+
+.card {
+  background: var(--card-bg);
+  border-radius: 16px;
+  padding: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent);
+}
+
+.category {
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.title {
+  font-size: 1.5rem;
+  color: var(--text-main);
+  margin: 0 0 12px 0;
+  font-family: 'Georgia', serif; /* Gives it a classic menu feel */
+}
+
+.ingredients {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 15px;
+}
+
+.ingredients li {
+  color: var(--text-dim);
+  font-size: 0.9rem;
+  margin-bottom: 6px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.instructions {
+  margin-top: auto;
+  padding-top: 15px;
+  font-style: italic;
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  line-height: 1.4;
+}
+
+/* Drink Page Styles */
+.drinkPageContainer {
+  min-height: 100vh;
+  background-color: var(--bg-color);
+  padding: 20px;
+}
+
+.backButton {
+  padding: 10px 20px;
+  background-color: transparent;
+  color: var(--accent);
+  border: 2px solid var(--accent);
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 30px;
+  font-weight: 600;
+}
+
+.backButton:hover {
+  background-color: var(--accent);
+  color: var(--bg-color);
+  transform: translateX(-4px);
+}
+
+.drinkPageContent {
+  max-width: 800px;
+  margin: 0 auto;
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.6) 0%, rgba(15, 23, 42, 0.8) 100%);
+  border: 1px solid rgba(251, 191, 36, 0.2);
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+}
+
+.drinkHeader {
+  margin-bottom: 40px;
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 20px;
+}
+
+.drinkCategory {
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  color: var(--accent);
+  font-weight: 700;
+  display: inline-block;
+  margin-bottom: 12px;
+}
+
+.drinkName {
+  font-size: 3rem;
+  color: var(--text-main);
+  margin: 12px 0 0 0;
+  font-family: 'Georgia', serif;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.drinkSection {
+  margin-bottom: 32px;
+}
+
+.sectionTitle {
+  font-size: 1.4rem;
+  color: var(--accent);
+  margin: 0 0 16px 0;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.ingredientsList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ingredientItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  color: var(--text-main);
+  font-size: 1.05rem;
+}
+
+.ingredientItem:last-child {
+  border-bottom: none;
+}
+
+.ingredientName {
+  color: var(--text-main);
+  font-weight: 500;
+}
+
+.ingredientAmount {
+  color: var(--text-dim);
+  font-size: 0.95rem;
+  background-color: rgba(251, 191, 36, 0.1);
+  padding: 4px 12px;
+  border-radius: 4px;
+  margin-left: 16px;
+}
+
+.garnishText {
+  font-size: 1.1rem;
+  color: var(--text-main);
+  line-height: 1.6;
+  padding: 16px;
+  background-color: rgba(251, 191, 36, 0.05);
+  border-left: 4px solid var(--accent);
+  border-radius: 4px;
+  margin: 0;
+}
+
+.methodText {
+  font-size: 1.1rem;
+  color: var(--text-main);
+  line-height: 1.8;
+  margin: 0;
+}
