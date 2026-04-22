@@ -1,11 +1,14 @@
 import styles from './styles.module.css'
 
-export function DrinkPage({drinkInfo, setMode}){
+export function DrinkPage({drinkInfo, setMode,resetFocus}){
     return(
         <div className={styles.drinkPageContainer}>
             <button 
                 className={styles.backButton}
-                onClick={() => setMode("explore")}
+                onClick={() => {
+                                setMode("explore")
+                                resetFocus()
+                            }}
             >
                 ← Back
             </button>

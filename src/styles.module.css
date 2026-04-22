@@ -100,11 +100,56 @@ color: black;
   display: flex;
   flex-direction: column;
   height: fit-content;
+  position: relative;
 }
 
 .card:hover {
   transform: translateY(-5px);
   border-color: var(--accent);
+}
+
+.buttonContainer {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: flex;
+  gap: 8px;
+}
+
+.editButton {
+  background: transparent;
+  border: none;
+  color: var(--accent);
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  opacity: 0.7;
+}
+
+.editButton:hover {
+  opacity: 1;
+  background: rgba(251, 191, 36, 0.1);
+  transform: scale(1.1);
+}
+
+.deleteButton {
+  background: transparent;
+  border: none;
+  color: #ef4444;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  opacity: 0.7;
+}
+
+.deleteButton:hover {
+  opacity: 1;
+  background: rgba(239, 68, 68, 0.1);
+  transform: scale(1.1);
 }
 
 .category {
@@ -271,4 +316,243 @@ color: black;
   color: var(--text-main);
   line-height: 1.8;
   margin: 0;
+}
+
+/* Form Styles */
+.formOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 1000;
+}
+
+.formContainer {
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(15, 23, 42, 0.98) 100%);
+  border: 1px solid rgba(251, 191, 36, 0.2);
+  border-radius: 20px;
+  padding: 40px;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7);
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.formHeader {
+  margin-bottom: 32px;
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 16px;
+}
+
+.formHeader h2 {
+  margin: 0 0 8px 0;
+  font-size: 2rem;
+  color: var(--text-main);
+  font-family: 'Georgia', serif;
+}
+
+.formSubtitle {
+  margin: 0;
+  color: var(--text-dim);
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-main);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.formInput,
+.formSelect,
+.formTextarea {
+  padding: 12px 14px;
+  background-color: rgba(15, 23, 42, 0.6);
+  border: 2px solid rgba(251, 191, 36, 0.2);
+  border-radius: 8px;
+  color: var(--text-main);
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.formInput::placeholder,
+.formTextarea::placeholder {
+  color: var(--text-dim);
+}
+
+.formInput:focus,
+.formSelect:focus,
+.formTextarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  background-color: rgba(15, 23, 42, 0.9);
+  box-shadow: 0 0 16px rgba(251, 191, 36, 0.25);
+}
+
+.formInput:hover,
+.formSelect:hover,
+.formTextarea:hover {
+  border-color: rgba(251, 191, 36, 0.4);
+}
+
+.formSelect {
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23fbbf24' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  padding-right: 32px;
+  appearance: none;
+}
+
+.formTextarea {
+  resize: vertical;
+  font-family: 'Courier New', monospace;
+}
+
+/* Ingredients List */
+.ingredientsList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px;
+  background-color: rgba(251, 191, 36, 0.05);
+  border-radius: 8px;
+  border: 1px solid rgba(251, 191, 36, 0.15);
+}
+
+.ingredientRow {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.ingredientRow .formInput {
+  flex: 1;
+  margin: 0;
+}
+
+.removeButton {
+  padding: 8px 12px;
+  background-color: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  min-width: 40px;
+  height: 40px;
+}
+
+.removeButton:hover {
+  background-color: rgba(239, 68, 68, 0.3);
+  border-color: #ef4444;
+  transform: scale(1.05);
+}
+
+.addIngredientButton {
+  padding: 10px 16px;
+  background-color: rgba(251, 191, 36, 0.15);
+  color: var(--accent);
+  border: 2px dashed rgba(251, 191, 36, 0.4);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  margin-top: 4px;
+}
+
+.addIngredientButton:hover {
+  background-color: rgba(251, 191, 36, 0.25);
+  border-color: var(--accent);
+}
+
+/* Form Actions */
+.formActions {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.submitButton,
+.cancelButton {
+  flex: 1;
+  padding: 14px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.submitButton {
+  background-color: var(--accent);
+  color: #0f172a;
+}
+
+.submitButton:hover {
+  background-color: #f9d23a;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(251, 191, 36, 0.3);
+}
+
+.submitButton:active {
+  transform: translateY(0);
+}
+
+.cancelButton {
+  background-color: transparent;
+  color: var(--accent);
+  border: 2px solid rgba(251, 191, 36, 0.4);
+}
+
+.cancelButton:hover {
+  background-color: rgba(251, 191, 36, 0.1);
+  border-color: var(--accent);
 }

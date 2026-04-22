@@ -1,24 +1,50 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import styles from './styles.module.css'
-import cocktails from '../iba-cocktails-web.json'
+
 import { Table } from './Table'
 import { DrinkPage } from './DrinkPage'
+import { DrinkForm } from './DrinkForm'
 
 
 function App() {
-  var [data,setData] = useState(cocktails)
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  
+  var [data,setData] = useState(null)
+  var [dataView,setDataView] = useState(null)
   var [searchInput,setSearch] = useState("")
-  // valid modes are explore,detailed
+ 
+  // valid modes are explore,detailed, add
   var [focusDrink,setDrink] = useState(null)
   var [mode,setMode] = useState("explore")
 
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('http://localhost:3001/');
+        const result = await response.json();
+        setData(result);
+        setDataView(result)
+      } catch (err) {
+        setError(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   function search(target){
-    var results = cocktails.filter((drink)=>{
+    var results = data.filter((drink)=>{
       return drink.name.toLowerCase().includes(target.toLowerCase())
     })
-    setData(results)
+    setDataView(results)
   }
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
   if (mode === "explore"){
   return (
     <div >
@@ -40,12 +66,14 @@ function App() {
         </button>
       </div>
       <button 
-      id={styles.addButton}>
+      id={styles.addButton}
+      onClick={()=>{setMode("add")}}
+      >
         Add Cocktail
       </button>
 
       <Table
-       data={data}
+       data={dataView}
        setDrink = {setDrink}
        setMode={setMode}
        />
@@ -53,8 +81,20 @@ function App() {
   )
 }
 else if(mode === 'detailed'){
- return <DrinkPage drinkInfo={focusDrink} setMode={setMode}/>
+ return (
+ <DrinkPage
+  drinkInfo={focusDrink} 
+  setMode={setMode}
+  resetFocus={()=>{setDrink(null)}}
+  />)
 }
 
+else if (mode === 'add'){
+  return (
+  <DrinkForm
+  defaultValue={focusDrink}
+  onCancel={()=>{setMode('explore')}}
+  />)
+}
 }
 export default App
