@@ -22,7 +22,7 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:3001/');
+        const response = await fetch(import.meta.env.VITE_API_URL+'/');
         const result = await response.json();
         setData(result);
         setDataView(result)

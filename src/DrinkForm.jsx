@@ -31,7 +31,7 @@ export function DrinkForm({ defaultValue ,onCancel }) {
     }
 
     if (defaultValue){dataToSend.id = defaultValue.id}
-    var url = defaultValue?"http://localhost:3001/editDrink":"http://localhost:3001/addDrink"
+    var url = defaultValue?import.meta.env.VITE_API_URL+"/editDrink":import.meta.env.VITE_API_URL+"/addDrink"
     const response = await fetch(url,
     {method:"POST",
       headers: {

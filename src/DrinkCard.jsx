@@ -1,10 +1,11 @@
 import styles from './styles.module.css'
 
+
 export function DrinkCard (props){
 
     async function deleteDrink(){
     var dataToSend = {id:props.info.id}
-    var url ="http://localhost:3001/deleteDrink"
+    var url = import.meta.env.VITE_API_URL + "/deleteDrink"
     const response = await fetch(url,
     {method:"POST",
       headers: {
